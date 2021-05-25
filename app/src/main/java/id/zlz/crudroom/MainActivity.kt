@@ -12,13 +12,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
+
         addNotes()
     }
 
     private fun addNotes() {
-        button_create.setOnClickListener {
+        binding.buttonCreate.setOnClickListener {
             val i = Intent(this, EditActivity::class.java)
             startActivity(i)
         }

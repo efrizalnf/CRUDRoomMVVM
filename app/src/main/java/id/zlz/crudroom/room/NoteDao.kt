@@ -7,19 +7,19 @@ import androidx.room.*
 interface NoteDao {
 
     @Insert
-    suspend fun insertdata(data: NoteEntity)
+    fun insertdata(data: NoteEntity)
 
     @Update
-    suspend fun updatedata(data: NoteEntity)
+    fun updatedata(data: NoteEntity)
 
     @Delete
-    suspend fun deletedata(data: NoteEntity)
+    fun deletedata(data: NoteEntity)
 
-    @Query("SELECT * FROM note ORDER BY id DESC")
-    suspend fun getNotes(): List<NoteEntity>
+    @Query("SELECT * from note")
+    fun getNotes(): List<NoteEntity>
 
-    @Query("SELECT * FROM note WHERE id =:noteid")
-    suspend fun getNoteData(noteid: Int): List<NoteEntity>
+//    @Query("SELECT * FROM NoteEntity WHERE id =:noteid")
+//    suspend fun getNoteData(noteid: Int): List<NoteEntity>
 
 
 }
