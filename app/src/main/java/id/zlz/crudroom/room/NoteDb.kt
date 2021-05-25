@@ -5,15 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(NoteEntity::class), version = 1)
+@Database(entities = [NoteEntity::class], version = 1)
 abstract class NoteDb : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
     companion object {
-        @Volatile private var instance : NoteDb ?= null
+        @Volatile
+        private var instance: NoteDb? = null
         private val LOCK = Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK){
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: buildDb(context).also {
                 instance = it
             }
@@ -21,7 +22,7 @@ abstract class NoteDb : RoomDatabase() {
 
         private fun buildDb(context: Context) = Room.databaseBuilder(
             context.applicationContext,
-            NoteDb::class.java, "notesdb"
+            NoteDb::class.java, "notesdb.db"
         ).build()
     }
 }

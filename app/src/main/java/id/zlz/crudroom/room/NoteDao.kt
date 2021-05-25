@@ -2,6 +2,7 @@ package id.zlz.crudroom.room
 
 import androidx.room.*
 
+
 @Dao
 interface NoteDao {
 
@@ -12,14 +13,13 @@ interface NoteDao {
     suspend fun updatedata(data: NoteEntity)
 
     @Delete
-    suspend fun deletedata(data:NoteEntity)
+    suspend fun deletedata(data: NoteEntity)
 
-    @Query("SELECT * FROM notesdb ORDER BY id DESC")
-    suspend fun getNotes() : List<NoteEntity>
+    @Query("SELECT * FROM note ORDER BY id DESC")
+    suspend fun getNotes(): List<NoteEntity>
 
-    @Query("SELECT * FROM notesdb WHERE id =:noteid")
+    @Query("SELECT * FROM note WHERE id =:noteid")
     suspend fun getNoteData(noteid: Int): List<NoteEntity>
 
-    
 
 }
