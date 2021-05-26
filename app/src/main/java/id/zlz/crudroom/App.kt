@@ -10,6 +10,7 @@ import id.zlz.crudroom.activity.EditActivity
 import id.zlz.crudroom.adapter.ItemClickListener
 import id.zlz.crudroom.adapter.NoteAdapter
 import id.zlz.crudroom.databinding.ActivityMainBinding
+import id.zlz.crudroom.databinding.ItemNoteBinding
 import id.zlz.crudroom.room.Const
 import id.zlz.crudroom.room.NoteDb
 import id.zlz.crudroom.room.NoteEntity
@@ -20,6 +21,7 @@ import kotlinx.coroutines.withContext
 
 class App : AppCompatActivity(), ItemClickListener {
     private lateinit var binding: ActivityMainBinding
+
     lateinit var noteAdapter: NoteAdapter
     val db by lazy { NoteDb(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,7 @@ class App : AppCompatActivity(), ItemClickListener {
         setContentView(binding.root)
         addNotes()
         setRecyclerView()
+
     }
 
     override fun onStart() {
@@ -55,8 +58,14 @@ class App : AppCompatActivity(), ItemClickListener {
         }
     }
 
-    override fun onClick(notes: NoteEntity) {
+
+
+    override fun onRead(notes: NoteEntity) {
         intentOption(notes.id, Const.TYPE_READ.ordinal)
+    }
+
+    override fun onUpdate(notes: NoteEntity) {
+        intentOption(notes.id, Const.TYPE_UPDATE.ordinal)
     }
 
     private fun intentOption(noteId: Int, intentType: Int){
@@ -66,6 +75,9 @@ class App : AppCompatActivity(), ItemClickListener {
                 .putExtra(LIST_INTENT_TYPE, intentType )
         )
     }
+
+
+
 
     companion object {
         const val LIST_NOTE_ID = "list_noteid"

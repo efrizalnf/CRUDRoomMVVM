@@ -6,7 +6,8 @@ import id.zlz.crudroom.room.NoteEntity
 
 interface ItemClickListener {
 
-    fun onClick(notes: NoteEntity)
+    fun onRead(notes: NoteEntity)
+    fun onUpdate(notes: NoteEntity)
 
 
 }
