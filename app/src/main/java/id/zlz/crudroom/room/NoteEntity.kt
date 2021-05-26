@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.versionedparcelable.ParcelField
 
-
 @Entity(tableName = "note")
 data class NoteEntity (
     @PrimaryKey(autoGenerate = true)

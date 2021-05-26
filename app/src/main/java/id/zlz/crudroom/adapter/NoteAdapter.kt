@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import id.zlz.crudroom.R
 import id.zlz.crudroom.room.NoteEntity
 
-class NoteAdapter(val list:ArrayList<NoteEntity>):
-    RecyclerView.Adapter<NoteViewHolder>() {
+class NoteAdapter(val list:ArrayList<NoteEntity>, private val itemClickListener: ItemClickListener):
+    RecyclerView.Adapter<NoteViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
         return NoteViewHolder(view)
@@ -16,6 +16,11 @@ class NoteAdapter(val list:ArrayList<NoteEntity>):
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val notelist = list[position]
         holder.title.text = notelist.title
+        holder.title.setOnClickListener {
+            itemClickListener.onClick(notelist)
+        }
+
+
     }
 
     override fun getItemCount() = list.size
@@ -26,4 +31,7 @@ class NoteAdapter(val list:ArrayList<NoteEntity>):
         list.addAll(lists)
         notifyDataSetChanged()
     }
+
+
+
 }
