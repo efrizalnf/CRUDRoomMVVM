@@ -35,6 +35,10 @@ class App : AppCompatActivity(), ItemClickListener {
 
     override fun onStart() {
         super.onStart()
+        onLoad()
+    }
+
+    private fun onLoad(){
         CoroutineScope(Dispatchers.IO).launch {
             val notes = db.noteDao().getNotes()
             withContext(Dispatchers.Main) {
@@ -66,6 +70,13 @@ class App : AppCompatActivity(), ItemClickListener {
 
     override fun onUpdate(notes: NoteEntity) {
         intentOption(notes.id, Const.TYPE_UPDATE.ordinal)
+    }
+
+    override fun onDelete(notes: NoteEntity) {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.noteDao().deletedata(notes)
+            onLoad()
+        }
     }
 
     private fun intentOption(noteId: Int, intentType: Int){

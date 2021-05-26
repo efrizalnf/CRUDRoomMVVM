@@ -28,10 +28,8 @@ class NoteAdapter(val list:ArrayList<NoteEntity>, private val itemClickListener:
         }
 
         binding.iconDelete.setOnClickListener {
-
+            itemClickListener.onDelete(notelist)
         }
-
-
     }
 
     override fun getItemCount() = list.size

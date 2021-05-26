@@ -8,6 +8,7 @@ interface ItemClickListener {
 
     fun onRead(notes: NoteEntity)
     fun onUpdate(notes: NoteEntity)
+    fun onDelete(notes:NoteEntity)
 
 
 }
