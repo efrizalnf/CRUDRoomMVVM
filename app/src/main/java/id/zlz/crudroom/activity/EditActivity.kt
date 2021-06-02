@@ -19,13 +19,11 @@ import kotlinx.coroutines.launch
 
 class EditActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditBinding
-    private lateinit var bindingitem: ItemNoteBinding
     val db by lazy { NoteDb(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
-        bindingitem = ItemNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupViewDetail()
     }

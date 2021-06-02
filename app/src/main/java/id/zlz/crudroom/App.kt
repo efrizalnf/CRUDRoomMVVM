@@ -62,8 +62,6 @@ class App : AppCompatActivity(), ItemClickListener {
         }
     }
 
-
-
     override fun onRead(notes: NoteEntity) {
         intentOption(notes.id, Const.TYPE_READ.ordinal)
     }
